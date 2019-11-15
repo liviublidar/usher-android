@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_list"
+    android:paddingLeft="30dp"
+    android:paddingTop="20dp"
+    android:paddingRight="30dp"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/loginEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_border_edittext"
+        android:drawableLeft="@drawable/ic_email_black_24dp"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:padding="12dp"
+        android:textColor="#FAFAFA"
+        android:textColorHint="#FAFAFA" />
+
+    <TextView
+        android:id="@+id/loginEmailError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginEmail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:text="ErrorText Text"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:radius="50dip"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/somethingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/loginEmailError"
+        android:layout_centerHorizontal="true"
+        android:onClick="onSomethingButtonClick"
+        android:text="something" />
+
+    <TextView
+        android:id="@+id/helloTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/somethingButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Hello Text"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+</RelativeLayout>

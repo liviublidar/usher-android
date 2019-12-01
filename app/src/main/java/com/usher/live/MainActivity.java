@@ -1,6 +1,5 @@
 package com.usher.live;
 
-import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +9,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.google.android.material.textfield.TextInputLayout;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Observable;
 import java.util.Observer;
 
-public class MainActivity extends Activity implements Observer {
+public class MainActivity extends AppCompatActivity implements Observer {
     private Button somethingButton;
     private TextView helloText, loginEmailError;
     private EditText loginEmail;
+    private TextInputLayout loginPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +35,18 @@ public class MainActivity extends Activity implements Observer {
         this.helloText = findViewById(R.id.helloTxt);
         this.somethingButton = findViewById(R.id.somethingButton);
         this.loginEmail = findViewById(R.id.loginEmail);
+        this.loginPassword = findViewById(R.id.loginPassword);
         this.loginEmailError = findViewById(R.id.loginEmailError);
 
         //instantiate form validators
         TextValidator emailValidator = new TextValidator(this.loginEmail) {
             @Override public void validate(TextView textView, String text) {
                 if (android.util.Patterns.EMAIL_ADDRESS.matcher(text).matches()){
+                    System.out.println("valid email");
                     this.setIsValid(true);
 
                 } else {
+                    System.out.println("invalid email");
                     this.setIsValid(false);
                 }
 

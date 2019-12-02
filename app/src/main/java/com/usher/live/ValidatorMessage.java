@@ -2,8 +2,6 @@ package com.usher.live;
 
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
-
 public class ValidatorMessage {
 
     public TextView originalTextView;
@@ -19,7 +17,6 @@ public class ValidatorMessage {
         this.originalTextView = originalTextView;
         this.valid = validity;
         this.option = option;
-
     }
 
     @Override

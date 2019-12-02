@@ -20,8 +20,7 @@
         android:layout_centerHorizontal="true"
         android:contentDescription="Main application logo Card"
         android:background="@color/white"
-        android:layout_margin="5dp"
-        android:elevation="10dp">
+        android:layout_margin="5dp">
 
         <ImageView
             android:elevation="2dp"
@@ -52,25 +51,6 @@
         android:textColor="#FAFAFA"
         android:textColorHint="#FAFAFA"
         />
-
-<!--
-    &lt;!&ndash;login password&ndash;&gt;
-    <EditText
-        android:id="@+id/loginPassword"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/loginEmail"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_border_edittext"
-        android:drawableLeft="@drawable/ic_lock_black_24dp"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        android:padding="12dp"
-        android:textColor="#FAFAFA"
-        android:textColorHint="#FAFAFA" />-->
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginPassword"

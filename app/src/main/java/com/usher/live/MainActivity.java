@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.google.android.material.internal.CheckableImageButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,10 +24,8 @@ public class MainActivity extends AppCompatActivity implements Observer {
     private EditText loginEmail;
     private TextInputLayout loginPassword;
     private TextInputEditText loginPasswordText;
-    private View togglePasswordButton;
     private TextValidator passwordPresent, emailValidator;
     private OnClickListener togglePasswordButtonListener;
-
 
     /**
      * runs all the initialisation jobs needed for this activity
@@ -56,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
      */
     public void onSomethingButtonClick(View view) {
         this.helloText.setVisibility(View.VISIBLE);
-        this.loginPassword.setEndIconDrawable(R.drawable.ic_email_black_24dp);
     }
 
     @Override
@@ -69,37 +65,20 @@ public class MainActivity extends AppCompatActivity implements Observer {
                 this.loginEmailError.setVisibility(View.VISIBLE);
             }
         } else if (validatorMessage.getTextView().equals(this.loginPasswordText)){
-
-            System.out.println("Something triggers this");
-            System.out.println(validatorMessage.toString());
             if(validatorMessage.option.equals("pwdIcon")){
-
                 if(validatorMessage.valid){ //has text in, show eye
                     this.loginPassword.setEndIconDrawable(R.drawable.ic_visibility_white_24dp);
-                } else { //text was emptied, show lock again
-                    this.loginPassword.setEndIconDrawable(R.drawable.ic_lock_black_24dp);
+                    //only observe once for this,  never again. if it changes once, remove observer
+                    this.passwordPresent.deleteObserver(this);//
                 }
             }
         }
 
     }
 
-    private View findTogglePasswordButton(ViewGroup viewGroup) {
-        int childCount = viewGroup.getChildCount();
-        for (int ind = 0; ind < childCount; ind++) {
-            View child = viewGroup.getChildAt(ind);
-            if (child instanceof ViewGroup) {
-                View togglePasswordButton = findTogglePasswordButton((ViewGroup) child);
-                if (togglePasswordButton != null) {
-                    return togglePasswordButton;
-                }
-            } else if (child instanceof CheckableImageButton) {
-                return child;
-            }
-        }
-        return null;
-    }
-
+    /**
+     * get the view element instances and attach them to the class
+     */
     private final void grabViewElements(){
         //grab view elements
         this.helloText = findViewById(R.id.helloTxt);
@@ -108,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
         this.loginPassword = findViewById(R.id.loginPassword);
         this.loginPasswordText = findViewById(R.id.loginPasswordText);
         this.loginEmailError = findViewById(R.id.loginEmailError);
-        this.togglePasswordButton = findTogglePasswordButton(this.loginPassword);
     }
 
     /**
@@ -169,8 +147,6 @@ public class MainActivity extends AppCompatActivity implements Observer {
                 }
                 // And restore the cursor position
                 editText.setSelection(selection);
-                System.out.println("click clack");
-
             }
         };
 
